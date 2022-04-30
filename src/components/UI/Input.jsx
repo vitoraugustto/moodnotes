@@ -1,13 +1,7 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-import {
-  COLOR_BLUE_200,
-  COLOR_BLUE_400,
-  COLOR_BLUE_700,
-  COLOR_VIOLET_400,
-  COLOR_VIOLET_700,
-} from '../../themes/theme';
+import { COLOR_BLUE_200, COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
 const Input = ({
   mask,
@@ -31,8 +25,9 @@ const Input = ({
       value={value}
       multiline={multiline}
       style={{
-        alignSelf: 'stretch',
-        fontSize: 16,
+        fontSize: 14,
+        fontFamily: FONTS.lato.regular,
+        letterSpacing: 0.4,
         color: color,
         paddingLeft: 16,
         paddingRight: 16,

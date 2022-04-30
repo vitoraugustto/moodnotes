@@ -23,6 +23,11 @@
 		82482E6351C04B6D862DF58B /* Akshar-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD9C122F53492DBABA965C /* Akshar-Bold.ttf */; };
 		DC3A6F47D4E74EA0BB0F4E93 /* Akshar-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 953D98EA465E40A18E531F95 /* Akshar-Regular.ttf */; };
 		BCB12336EF354204A59E0FB6 /* Akshar-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03CDF1C13DBD405FB441A816 /* Akshar-SemiBold.ttf */; };
+		EACF70E408C947D682B1D216 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04E9A786F80F4A60B4C42442 /* Poppins-Bold.ttf */; };
+		28BFFA246CB34F16BE7B3283 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2179D8758F5A4047BF853EC8 /* Poppins-Regular.ttf */; };
+		04289AAE34174400B08D3DD9 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A28238DEE76B4A848250FB2A /* Poppins-SemiBold.ttf */; };
+		C21632B298F34BC698AD7BE1 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9545C93FF474C02950392CF /* Lato-Bold.ttf */; };
+		6328780F1A7B494CB6E6E826 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 056CA5D212924651AA5A8201 /* Lato-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +67,11 @@
 		0ABD9C122F53492DBABA965C /* Akshar-Bold.ttf */ = {isa = PBXFileReference; name = "Akshar-Bold.ttf"; path = "../src/assets/fonts/Akshar-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		953D98EA465E40A18E531F95 /* Akshar-Regular.ttf */ = {isa = PBXFileReference; name = "Akshar-Regular.ttf"; path = "../src/assets/fonts/Akshar-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		03CDF1C13DBD405FB441A816 /* Akshar-SemiBold.ttf */ = {isa = PBXFileReference; name = "Akshar-SemiBold.ttf"; path = "../src/assets/fonts/Akshar-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		04E9A786F80F4A60B4C42442 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2179D8758F5A4047BF853EC8 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A28238DEE76B4A848250FB2A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D9545C93FF474C02950392CF /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../src/assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		056CA5D212924651AA5A8201 /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../src/assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +189,11 @@
 				0ABD9C122F53492DBABA965C /* Akshar-Bold.ttf */,
 				953D98EA465E40A18E531F95 /* Akshar-Regular.ttf */,
 				03CDF1C13DBD405FB441A816 /* Akshar-SemiBold.ttf */,
+				04E9A786F80F4A60B4C42442 /* Poppins-Bold.ttf */,
+				2179D8758F5A4047BF853EC8 /* Poppins-Regular.ttf */,
+				A28238DEE76B4A848250FB2A /* Poppins-SemiBold.ttf */,
+				D9545C93FF474C02950392CF /* Lato-Bold.ttf */,
+				056CA5D212924651AA5A8201 /* Lato-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -289,6 +304,11 @@
 				82482E6351C04B6D862DF58B /* Akshar-Bold.ttf in Resources */,
 				DC3A6F47D4E74EA0BB0F4E93 /* Akshar-Regular.ttf in Resources */,
 				BCB12336EF354204A59E0FB6 /* Akshar-SemiBold.ttf in Resources */,
+				EACF70E408C947D682B1D216 /* Poppins-Bold.ttf in Resources */,
+				28BFFA246CB34F16BE7B3283 /* Poppins-Regular.ttf in Resources */,
+				04289AAE34174400B08D3DD9 /* Poppins-SemiBold.ttf in Resources */,
+				C21632B298F34BC698AD7BE1 /* Lato-Bold.ttf in Resources */,
+				6328780F1A7B494CB6E6E826 /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
