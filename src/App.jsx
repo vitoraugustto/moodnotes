@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 
 import SafeArea from './components/Layout/SafeArea';
 import Box from './components/Layout/Box';
+import Row from './components/Layout/Row';
 
 const App = () => {
   const handleOnPress = () => {
@@ -11,11 +12,14 @@ const App = () => {
 
   return (
     <SafeArea>
-      <View>
-        <Box onPress={handleOnPress}>
-          <Text style={{ color: 'black' }}>Teste</Text>
+      <Row>
+        <Box bgColor="purple" onPress={handleOnPress}>
+          <Text style={{ color: 'white', padding: 40 }}>Teste</Text>
         </Box>
-      </View>
+        <Box bgColor="blue" onPress={handleOnPress}>
+          <Text style={{ color: 'white', padding: 40 }}>Teste</Text>
+        </Box>
+      </Row>
     </SafeArea>
   );
 };
