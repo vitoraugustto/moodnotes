@@ -1,11 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-import SafeArea from './components/Layout/SafeArea';
-import Box from './components/Layout/Box';
-import Row from './components/Layout/Row';
-import Padding from './components/Layout/Padding';
-import Margin from './components/Layout/Margin';
+import { SafeArea, Box, Row, Margin } from './components';
 
 const App = () => {
   const handleOnPress = () => {
