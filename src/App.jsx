@@ -5,6 +5,7 @@ import SafeArea from './components/Layout/SafeArea';
 import Box from './components/Layout/Box';
 import Row from './components/Layout/Row';
 import Padding from './components/Layout/Padding';
+import Margin from './components/Layout/Margin';
 
 const App = () => {
   const handleOnPress = () => {
@@ -14,11 +15,11 @@ const App = () => {
   return (
     <SafeArea>
       <Row>
-        <Box bgColor="purple" onPress={handleOnPress}>
-          <Padding all={10}>
+        <Margin top={10}>
+          <Box bgColor="purple" onPress={handleOnPress}>
             <Text style={{ color: 'white' }}>Teste</Text>
-          </Padding>
-        </Box>
+          </Box>
+        </Margin>
       </Row>
     </SafeArea>
   );
