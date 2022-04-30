@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import SafeArea from './components/Layout/SafeArea';
 import Box from './components/Layout/Box';
 import Row from './components/Layout/Row';
+import Padding from './components/Layout/Padding';
 
 const App = () => {
   const handleOnPress = () => {
@@ -14,10 +15,9 @@ const App = () => {
     <SafeArea>
       <Row>
         <Box bgColor="purple" onPress={handleOnPress}>
-          <Text style={{ color: 'white', padding: 40 }}>Teste</Text>
-        </Box>
-        <Box bgColor="blue" onPress={handleOnPress}>
-          <Text style={{ color: 'white', padding: 40 }}>Teste</Text>
+          <Padding all={10}>
+            <Text style={{ color: 'white' }}>Teste</Text>
+          </Padding>
         </Box>
       </Row>
     </SafeArea>
