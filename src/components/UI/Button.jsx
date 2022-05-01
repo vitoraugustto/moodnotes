@@ -2,7 +2,13 @@ import React from 'react';
 import { TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import MyText from '../Typography/MyText';
-import { COLOR_BLUE_400, COLOR_WHITE, FONTS } from '../../themes/theme';
+import {
+  COLOR_BLUE_400,
+  COLOR_GRAY_400,
+  COLOR_GRAY_700,
+  COLOR_WHITE,
+  FONTS,
+} from '../../themes/theme';
 
 const Button = ({
   loading,
@@ -11,22 +17,30 @@ const Button = ({
   bgColor = COLOR_BLUE_400,
   color,
   clear,
+  disabled,
   borderColor,
   style,
   onPress,
 }) => {
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={onPress}
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: clear ? 'transparent' : bgColor,
+        backgroundColor: clear
+          ? 'transparent'
+          : disabled
+          ? COLOR_GRAY_400
+          : bgColor,
         flexDirection: 'row',
         minHeight: 48,
         borderRadius: borderRadius,
         borderWidth: borderColor ? 3 : 0,
         borderColor: borderColor,
+
+        transition: '0.5s',
         ...style,
       }}>
       {loading ? (
@@ -38,7 +52,15 @@ const Button = ({
         <MyText
           spacing={1.5}
           font={FONTS.poppins.semibold}
-          color={color ? color : clear ? COLOR_BLUE_400 : COLOR_WHITE}>
+          color={
+            color
+              ? color
+              : clear
+              ? COLOR_BLUE_400
+              : disabled
+              ? COLOR_GRAY_700
+              : COLOR_WHITE
+          }>
           {text}
         </MyText>
       )}

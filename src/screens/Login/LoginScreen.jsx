@@ -1,5 +1,7 @@
-import React from 'react';
-import { Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { Image, ScrollView, Alert } from 'react-native';
+
+import { Login } from '../../services/auth';
 
 import {
   SafeArea,
@@ -11,7 +13,7 @@ import {
 } from '../../components';
 
 import { windowHeight } from '../../utils';
-import { COLOR_BLUE_700, COLOR_BLUE_400, FONTS } from '../../themes/theme';
+import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
 import SeatedMan from '../../assets/images/seated-man.png';
 import { useNavigation } from '@react-navigation/native';
@@ -19,8 +21,24 @@ import { useNavigation } from '@react-navigation/native';
 const LoginScreen = () => {
   const navigation = useNavigation();
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState('');
+
   const handleOnPress = () => {
-    navigation.navigate('LoginScreen');
+    if (loading) return;
+
+    setLoading(true);
+    Login({ username: username, password: password })
+      .then(res => {
+        Alert.alert(null, 'Logado');
+        console.log(res.data);
+      })
+      .catch(err => {
+        Alert.alert(null, 'Usuário ou senha incorretos');
+        console.log(err.response.data);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -32,7 +50,6 @@ const LoginScreen = () => {
             style={{ height: windowHeight * 0.6 }}
             source={SeatedMan}
           />
-
           <MyText font={FONTS.poppins.bold} size={22}>
             Olá!
           </MyText>
@@ -42,13 +59,26 @@ const LoginScreen = () => {
             size={16}>
             Que bom ter você por aqui. ;)
           </MyText>
-
           <Margin top={24} />
-          <Input placeholder="Digite seu usuário" />
+          <Input
+            placeholder="Digite seu usuário"
+            value={username}
+            onChangeText={setUsername}
+          />
           <Margin top={12} />
-          <Input mask placeholder="Senha" />
+          <Input
+            mask
+            placeholder="Digite sua senha"
+            value={password}
+            onChangeText={setPassword}
+          />
           <Margin top={12} />
-          <Button onPress={handleOnPress} text="Entrar" />
+          <Button
+            disabled={!username || !password}
+            loading={loading}
+            onPress={handleOnPress}
+            text="Entrar"
+          />
         </Padding>
       </ScrollView>
     </SafeArea>

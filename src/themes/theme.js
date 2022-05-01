@@ -10,6 +10,9 @@ export const FONTS = {
   },
 };
 
+export const COLOR_GRAY_400 = '#9ca3af';
+export const COLOR_GRAY_700 = '#374151';
+
 export const COLOR_VIOLET_300 = '#c4b5fd';
 export const COLOR_VIOLET_400 = '#a78bfa';
 export const COLOR_VIOLET_500 = '#a855f7';
