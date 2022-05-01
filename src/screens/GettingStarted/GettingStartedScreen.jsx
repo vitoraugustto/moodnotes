@@ -14,10 +14,13 @@ import { windowHeight } from '../../utils';
 import { COLOR_BLUE_700, COLOR_BLUE_400, FONTS } from '../../themes/theme';
 
 import SeatedMan from '../../assets/images/seated-man.png';
+import { useNavigation } from '@react-navigation/native';
 
 const GettingStartedScreen = () => {
+  const navigation = useNavigation();
+
   const handleOnPress = () => {
-    console.log('Pressed!');
+    navigation.navigate('HomeScreen');
   };
 
   return (
