@@ -35,7 +35,7 @@ const LoginScreen = () => {
         console.log(res.data);
       })
       .catch(err => {
-        Alert.alert(null, 'Usuário ou senha incorretos');
+        Alert.alert(null, 'Usuário ou senha inválida');
         console.log(err.response.data);
       })
       .finally(() => setLoading(false));
@@ -43,7 +43,7 @@ const LoginScreen = () => {
 
   return (
     <SafeArea>
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         <Padding all={16}>
           <Image
             resizeMode="contain"
