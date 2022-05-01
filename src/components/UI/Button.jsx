@@ -12,6 +12,7 @@ const Button = ({
   color,
   clear,
   borderColor,
+  style,
   onPress,
 }) => {
   return (
@@ -26,6 +27,7 @@ const Button = ({
         borderRadius: borderRadius,
         borderWidth: borderColor ? 3 : 0,
         borderColor: borderColor,
+        ...style,
       }}>
       {loading ? (
         <ActivityIndicator
