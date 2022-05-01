@@ -3,11 +3,11 @@ import { Image, ScrollView } from 'react-native';
 
 import {
   SafeArea,
-  Box,
   Margin,
   Padding,
   Button,
   MyText,
+  Input,
 } from '../../components';
 
 import { windowHeight } from '../../utils';
@@ -16,7 +16,7 @@ import { COLOR_BLUE_700, COLOR_BLUE_400, FONTS } from '../../themes/theme';
 import SeatedMan from '../../assets/images/seated-man.png';
 import { useNavigation } from '@react-navigation/native';
 
-const GettingStartedScreen = () => {
+const LoginScreen = () => {
   const navigation = useNavigation();
 
   const handleOnPress = () => {
@@ -32,28 +32,27 @@ const GettingStartedScreen = () => {
             style={{ height: windowHeight * 0.6 }}
             source={SeatedMan}
           />
+
           <MyText font={FONTS.poppins.bold} size={22}>
-            Seu aplicativo para registrar seu dia a dia.
+            Olá!
           </MyText>
           <MyText
             font={FONTS.poppins.semibold}
             color={COLOR_BLUE_700}
             size={16}>
-            Para começar, entre ou realize seu cadastro. :)
+            Que bom ter você por aqui. ;)
           </MyText>
+
           <Margin top={24} />
-          <Button onPress={handleOnPress} text="Entrar" />
+          <Input placeholder="Digite seu usuário" />
           <Margin top={12} />
-          <Button
-            clear
-            borderColor={COLOR_BLUE_400}
-            onPress={handleOnPress}
-            text="Cadastrar"
-          />
+          <Input mask placeholder="Senha" />
+          <Margin top={12} />
+          <Button onPress={handleOnPress} text="Entrar" />
         </Padding>
       </ScrollView>
     </SafeArea>
   );
 };
 
-export default GettingStartedScreen;
+export default LoginScreen;
