@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Image, ScrollView, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { Login } from '../../services/auth';
+import { login } from '../../services/auth';
 
 import {
   SafeArea,
@@ -12,11 +13,10 @@ import {
   Input,
 } from '../../components';
 
-import { windowHeight } from '../../utils';
-import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
-
 import SeatedMan from '../../assets/images/seated-man.png';
-import { useNavigation } from '@react-navigation/native';
+import { windowHeight } from '../../utils';
+
+import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -27,9 +27,9 @@ const LoginScreen = () => {
 
   const handleOnPress = () => {
     if (loading) return;
-
     setLoading(true);
-    Login({ username: username, password: password })
+
+    login({ username: username, password: password })
       .then(res => {
         Alert.alert(null, 'Logado');
         console.log(res.data);
