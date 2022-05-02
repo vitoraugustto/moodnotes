@@ -17,22 +17,23 @@ import SeatedMan from '../../assets/images/seated-man.png';
 import { windowHeight } from '../../utils';
 
 import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeToken } from '../../store/actions/user';
 
 const LoginScreen = () => {
-  const navigation = useNavigation();
+  const store = useSelector(state => state);
+  const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('eve.holt@reqres.in');
+  const [password, setPassword] = useState('cityslicka');
   const [loading, setLoading] = useState('');
 
   const handleOnPress = () => {
     if (loading) return;
     setLoading(true);
-
     login({ username: username, password: password })
       .then(res => {
-        Alert.alert(null, 'Logado');
-        console.log(res.data);
+        dispatch(storeToken({ token: res.data.token }));
       })
       .catch(err => {
         Alert.alert(null, 'Usuário ou senha inválida');
@@ -40,6 +41,8 @@ const LoginScreen = () => {
       })
       .finally(() => setLoading(false));
   };
+
+  console.log(store);
 
   return (
     <SafeArea>
@@ -74,7 +77,7 @@ const LoginScreen = () => {
           />
           <Margin top={12} />
           <Button
-            disabled={!username || !password}
+            // disabled={!username || !password}
             loading={loading}
             onPress={handleOnPress}
             text="Entrar"

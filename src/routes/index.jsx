@@ -4,17 +4,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { START_ROUTES } from './start';
 import { MAIN_ROUTES } from './main';
 import { AUTH_ROUTES } from './auth';
+import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
-const isAuthenticated = false;
 
 const Routes = () => {
+  const token = useSelector(state => state.user.token);
+  const isAuthenticated = token;
+
   return (
     <Stack.Navigator>
       {Object.entries(
         isAuthenticated
-          ? {}
-          : { ...START_ROUTES, ...MAIN_ROUTES, ...AUTH_ROUTES },
+          ? { ...MAIN_ROUTES }
+          : { ...START_ROUTES, ...AUTH_ROUTES },
       ).map(([routeName, route]) => (
         <Stack.Screen
           key={routeName}
