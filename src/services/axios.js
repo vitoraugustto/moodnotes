@@ -1,11 +1,13 @@
 import axios from 'axios';
 
+import { BACKEND_BASE_URL } from '../config/api';
+
 const JSON_HEADERS = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
 };
 
 export const API_INSTANCE = axios.create({
-  baseURL: `https://reqres.in`,
+  baseURL: BACKEND_BASE_URL,
   headers: JSON_HEADERS,
 });

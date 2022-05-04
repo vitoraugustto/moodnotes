@@ -1,10 +1,11 @@
-export const STORE_TOKEN = 'STORE_TOKEN';
+export const SET_USER = 'SET_USER';
 
-export const storeToken =
-  ({ token }) =>
+export const setUser =
+  ({ user, token }) =>
   dispatch => {
     dispatch({
-      type: STORE_TOKEN,
+      type: SET_USER,
+      user: user,
       token: token,
     });
   };

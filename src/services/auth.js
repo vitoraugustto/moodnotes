@@ -1,11 +1,11 @@
 import { API_INSTANCE } from './axios';
 
-export const login = ({ username, password }) => {
+export const login = ({ user, password }) => {
   return API_INSTANCE({
     method: 'POST',
-    url: `/api/login`,
+    url: `/users/login`,
     data: {
-      email: username,
+      user: user,
       password: password,
     },
   });

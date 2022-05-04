@@ -1,13 +1,11 @@
-import { STORE_TOKEN } from '../actions/user';
+import { SET_USER } from '../actions/user';
 
-const initialState = {
-  token: null,
-};
+const initialState = {};
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case STORE_TOKEN: {
-      return { ...state, token: action.token };
+    case SET_USER: {
+      return { ...state, token: action.token, ...action.user };
     }
     default:
       return state;

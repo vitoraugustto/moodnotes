@@ -9,9 +9,10 @@ const Box = ({
   borderRadius,
   borderColor,
   onPress,
-  style,
   height,
   width,
+  shadow,
+  style,
   children,
 }) => {
   const Container = onPress ? TouchableOpacity : View;
@@ -20,6 +21,7 @@ const Box = ({
     <Container
       onPress={onPress}
       style={{
+        elevation: shadow ? 3 : 0,
         flex: flex ? 1 : undefined,
         backgroundColor: bgColor,
         borderRadius: borderRadius,

@@ -27,11 +27,13 @@ const GettingStartedScreen = () => {
     <SafeArea>
       <ScrollView>
         <Padding all={16}>
-          <Image
-            resizeMode="contain"
-            style={{ height: windowHeight * 0.6 }}
-            source={SeatedMan}
-          />
+          <Box hCenter>
+            <Image
+              resizeMode="contain"
+              style={{ height: windowHeight * 0.6 }}
+              source={SeatedMan}
+            />
+          </Box>
           <MyText font={FONTS.poppins.bold} size={22}>
             Seu aplicativo para registrar seu dia a dia.
           </MyText>

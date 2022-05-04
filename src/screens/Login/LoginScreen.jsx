@@ -14,35 +14,31 @@ import {
 } from '../../components';
 
 import SeatedMan from '../../assets/images/seated-man.png';
-import { windowHeight } from '../../utils';
+import { windowHeight, windowWidth } from '../../utils';
 
 import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { storeToken } from '../../store/actions/user';
+import { setUser } from '../../store/actions/user';
 
 const LoginScreen = () => {
-  const store = useSelector(state => state);
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('eve.holt@reqres.in');
-  const [password, setPassword] = useState('cityslicka');
+  const [username, setUsername] = useState('aline@email.com');
+  const [password, setPassword] = useState('Re3we322s');
   const [loading, setLoading] = useState('');
 
   const handleOnPress = () => {
     if (loading) return;
     setLoading(true);
-    login({ username: username, password: password })
+    login({ user: username, password: password })
       .then(res => {
-        dispatch(storeToken({ token: res.data.token }));
+        dispatch(setUser(res.data, res.data.token));
       })
       .catch(err => {
-        Alert.alert(null, 'Usuário ou senha inválida');
-        console.log(err.response.data);
+        Alert.alert(null, 'Usuário ou senha incorreta');
       })
       .finally(() => setLoading(false));
   };
-
-  console.log(store);
 
   return (
     <SafeArea>
@@ -89,3 +85,17 @@ const LoginScreen = () => {
 };
 
 export default LoginScreen;
+
+const teste = {
+  token:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjcxYjIyMGRmMGQ3Nzk4Y2IxNDhhNjYiLCJpYXQiOjE2NTE2MjI1MjF9.P5nwt2p2CzFCdb5CizdslVOx8fUeWh7QyKffmgbegIY',
+  user: {
+    __v: 50,
+    _id: '6271b220df0d7798cb148a66',
+    age: 0,
+    createdAt: '2022-05-03T22:52:16.697Z',
+    email: 'aline@email.com',
+    name: 'Aline',
+    updatedAt: '2022-05-04T00:02:01.040Z',
+  },
+};
