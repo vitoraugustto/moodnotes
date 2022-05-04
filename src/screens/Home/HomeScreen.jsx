@@ -60,37 +60,49 @@ const HomeScreen = () => {
             </MyText>
             <PlusButton handleOnPress={handleOnPress} />
           </Row>
-          <Margin top={12} />
-          <Box
-            onPress={() => console.log('Nota de humor')}
-            shadow
-            borderRadius={16}
-            bgColor={COLOR_GRAY_100}>
-            <Padding all={12}>
-              <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
-                <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
-                  {fakeNotes[0].title}
-                </MyText>
-
-                <Box
-                  hCenter
-                  vCenter
-                  bgColor={COLOR_WHITE}
-                  borderRadius={10}
-                  width={30}
-                  height={30}>
-                  <MyText font={FONTS.poppins.bold}>:(</MyText>
-                </Box>
-              </Row>
-              <Margin top={8} />
-              <MyText color={COLOR_MEDIUM_EMPHASIS}>
-                {fakeNotes[0].description}
-              </MyText>
-            </Padding>
-          </Box>
+          <MyText
+            font={FONTS.poppins.regular}
+            color={COLOR_MEDIUM_EMPHASIS}
+            size={12}>
+            Sua nota mais recente
+          </MyText>
+          <LatestNote
+            handleOnPress={() => console.log('Nota recente!')}
+            fakeNote={fakeNotes[0]}
+          />
         </Padding>
       </ScrollView>
     </SafeArea>
+  );
+};
+
+const LatestNote = ({ handleOnPress, fakeNote }) => {
+  return (
+    <Box
+      onPress={handleOnPress}
+      shadow
+      borderRadius={16}
+      bgColor={COLOR_GRAY_100}>
+      <Padding all={12}>
+        <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
+          <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
+            {fakeNote.title}
+          </MyText>
+
+          <Box
+            hCenter
+            vCenter
+            bgColor={COLOR_WHITE}
+            borderRadius={10}
+            width={30}
+            height={30}>
+            <MyText font={FONTS.poppins.bold}>:(</MyText>
+          </Box>
+        </Row>
+        <Margin top={8} />
+        <MyText color={COLOR_MEDIUM_EMPHASIS}>{fakeNote.description}</MyText>
+      </Padding>
+    </Box>
   );
 };
 
