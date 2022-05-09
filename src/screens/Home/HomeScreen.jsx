@@ -1,12 +1,15 @@
-import React from 'react';
-import { ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { Image, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { logoutUser } from '../../store/actions/user';
 
 import { Box, Margin, MyText, Padding, Row, SafeArea } from '../../components';
 
+import LogoutIcon from '../../assets/icons/logout--black.png';
+
 import {
   COLOR_HIGH_EMPHASIS,
-  COLOR_BLUE_700,
   COLOR_GRAY_100,
   COLOR_WHITE,
   FONTS,
@@ -30,27 +33,35 @@ const fakeNotes = [
 
 const HomeScreen = () => {
   const { name } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
-  const handleOnPress = () => {
-    console.log('Criar nova tarefa!');
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
   return (
     <SafeArea>
       <ScrollView>
         <Padding all={16}>
-          <MyText
-            font={FONTS.poppins.bold}
-            color={COLOR_HIGH_EMPHASIS}
-            size={24}>
-            Olá, {name}!
-          </MyText>
+          <Row vCenter style={{ justifyContent: 'space-between' }}>
+            <MyText
+              font={FONTS.poppins.bold}
+              color={COLOR_HIGH_EMPHASIS}
+              size={24}>
+              Olá, {name}!
+            </MyText>
+
+            <Box onPress={handleLogout}>
+              <Image style={{ width: 42, height: 42 }} source={LogoutIcon} />
+            </Box>
+          </Row>
+
           <MyText
             color={COLOR_MEDIUM_EMPHASIS}
             font={FONTS.lato.regular}
             size={20}>
             Como está se sentindo hoje?
           </MyText>
-          <Margin top={24} />
+          <Margin top={48} />
           <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
             <MyText
               font={FONTS.poppins.bold}
@@ -58,7 +69,7 @@ const HomeScreen = () => {
               size={20}>
               Notas de humor
             </MyText>
-            <PlusButton handleOnPress={handleOnPress} />
+            <PlusButton />
           </Row>
           <MyText
             font={FONTS.poppins.regular}
