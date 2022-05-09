@@ -1,13 +1,12 @@
 import axios from 'axios';
-
 import { BACKEND_BASE_URL } from '../config/api';
 
-const JSON_HEADERS = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json',
-};
+import store from '../store';
 
 export const API_INSTANCE = axios.create({
   baseURL: BACKEND_BASE_URL,
-  headers: JSON_HEADERS,
+  headers: {
+    Authorization: store.getState().user.token,
+    'Content-Type': 'application/json',
+  },
 });
