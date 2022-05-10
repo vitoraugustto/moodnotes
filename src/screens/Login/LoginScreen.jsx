@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, ScrollView, Alert } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { login } from '../../services/auth';
@@ -12,6 +12,7 @@ import {
   Button,
   MyText,
   Input,
+  Image,
 } from '../../components';
 
 import { windowHeight } from '../../utils';
@@ -45,8 +46,8 @@ const LoginScreen = () => {
         <Padding all={16}>
           <Image
             resizeMode="contain"
-            style={{ height: windowHeight * 0.6 }}
-            source={SeatedMan}
+            height={windowHeight * 0.6}
+            src={SeatedMan}
           />
           <MyText font={FONTS.poppins.bold} size={22}>
             Olá!

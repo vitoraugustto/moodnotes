@@ -1,43 +1,44 @@
-import React, { useState } from 'react';
-import { Image, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { fetchNotes } from '../../services/note';
 import { logoutUser } from '../../store/actions/user';
 
-import { Box, Margin, MyText, Padding, Row, SafeArea } from '../../components';
-
-import LogoutIcon from '../../assets/icons/logout--black.png';
+import {
+  Box,
+  Icon,
+  Margin,
+  MyText,
+  Padding,
+  Row,
+  SafeArea,
+} from '../../components';
 
 import {
   COLOR_HIGH_EMPHASIS,
   COLOR_GRAY_100,
   COLOR_WHITE,
-  FONTS,
   COLOR_MEDIUM_EMPHASIS,
+  FONTS,
 } from '../../themes/theme';
-
-const fakeNotes = [
-  {
-    mood: 'Triste',
-    title: 'Hoje não é um dia bom',
-    description:
-      'Hoje não foi um dia tão bom, não sei dizer exatamente pq! Estou triste',
-  },
-  {
-    mood: 'happy',
-    title: 'Hoje é um dia bom',
-    description:
-      'Hoje foi um dia tão bom, não sei dizer exatamente pq! Estou feliz',
-  },
-];
 
 const HomeScreen = () => {
   const { name } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
+  const [latestNote, setLatestNote] = useState({});
+
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+
+  useEffect(() => {
+    fetchNotes()
+      .then(res => setLatestNote(res.data[res.data.length - 1]))
+      .catch(err => console.log(err.response.data));
+  }, []);
+
   return (
     <SafeArea>
       <ScrollView>
@@ -51,7 +52,7 @@ const HomeScreen = () => {
             </MyText>
 
             <Box onPress={handleLogout}>
-              <Image style={{ width: 42, height: 42 }} source={LogoutIcon} />
+              <Icon size={42} iconName="logout--black" />
             </Box>
           </Row>
 
@@ -79,7 +80,7 @@ const HomeScreen = () => {
           </MyText>
           <LatestNote
             handleOnPress={() => console.log('Nota recente!')}
-            fakeNote={fakeNotes[0]}
+            latestNote={latestNote}
           />
         </Padding>
       </ScrollView>
@@ -87,7 +88,7 @@ const HomeScreen = () => {
   );
 };
 
-const LatestNote = ({ handleOnPress, fakeNote }) => {
+const LatestNote = ({ handleOnPress, latestNote }) => {
   return (
     <Box
       onPress={handleOnPress}
@@ -97,7 +98,7 @@ const LatestNote = ({ handleOnPress, fakeNote }) => {
       <Padding all={12}>
         <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
           <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
-            {fakeNote.title}
+            {latestNote.mood}
           </MyText>
 
           <Box
@@ -111,7 +112,7 @@ const LatestNote = ({ handleOnPress, fakeNote }) => {
           </Box>
         </Row>
         <Margin top={8} />
-        <MyText color={COLOR_MEDIUM_EMPHASIS}>{fakeNote.description}</MyText>
+        <MyText color={COLOR_MEDIUM_EMPHASIS}>{latestNote.description}</MyText>
       </Padding>
     </Box>
   );
