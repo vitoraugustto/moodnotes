@@ -27,7 +27,7 @@ const HomeScreen = () => {
   const { name } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const [latestNote, setLatestNote] = useState({});
+  const [latestNote, setLatestNote] = useState(null);
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -78,14 +78,36 @@ const HomeScreen = () => {
             size={12}>
             Sua nota mais recente
           </MyText>
-          <LatestNote
-            handleOnPress={() => console.log('Nota recente!')}
-            latestNote={latestNote}
-          />
+
+          {latestNote ? (
+            <LatestNote
+              handleOnPress={() => console.log('Nota recente!')}
+              latestNote={latestNote}
+            />
+          ) : null}
         </Padding>
       </ScrollView>
     </SafeArea>
   );
+};
+
+const MOODS = {
+  sad: {
+    text: 'Triste',
+    emoji: 'sad-emoji',
+  },
+  happy: {
+    text: 'Feliz',
+    emoji: 'happy-emoji',
+  },
+  angry: {
+    text: 'Raiva',
+    emoji: 'angry-emoji',
+  },
+  surprised: {
+    text: 'Surpreso',
+    emoji: 'surprised-emoji',
+  },
 };
 
 const LatestNote = ({ handleOnPress, latestNote }) => {
@@ -98,9 +120,8 @@ const LatestNote = ({ handleOnPress, latestNote }) => {
       <Padding all={12}>
         <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
           <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
-            {latestNote.mood}
+            {MOODS[latestNote.mood].text}
           </MyText>
-
           <Box
             hCenter
             vCenter
@@ -108,7 +129,7 @@ const LatestNote = ({ handleOnPress, latestNote }) => {
             borderRadius={10}
             width={30}
             height={30}>
-            <MyText font={FONTS.poppins.bold}>:(</MyText>
+            <Icon size={32} iconName={MOODS[latestNote.mood].emoji} />
           </Box>
         </Row>
         <Margin top={8} />
