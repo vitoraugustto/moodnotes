@@ -17,7 +17,7 @@ import {
 
 import {
   COLOR_HIGH_EMPHASIS,
-  COLOR_GRAY_100,
+  COLOR_BLUE_400,
   COLOR_WHITE,
   COLOR_MEDIUM_EMPHASIS,
   FONTS,
@@ -29,11 +29,13 @@ const HomeScreen = () => {
 
   const [latestNote, setLatestNote] = useState(null);
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
+  // const handleLogout = () => {
+  //   dispatch(logoutUser());
+  // };
 
-  console.log(useSelector(state => state));
+  const handleCreateNote = () => {
+    console.log('Criar nota');
+  };
 
   useEffect(() => {
     fetchNotes()
@@ -42,53 +44,65 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <SafeArea>
-      <ScrollView>
+    <SafeArea bgColor="#f5f5f5">
+      <Box bgColor={COLOR_BLUE_400}>
         <Padding all={16}>
           <Row vCenter style={{ justifyContent: 'space-between' }}>
-            <MyText
-              font={FONTS.poppins.bold}
-              color={COLOR_HIGH_EMPHASIS}
-              size={24}>
+            <MyText font={FONTS.poppins.bold} color={COLOR_WHITE} size={24}>
               Olá, {name}!
             </MyText>
 
-            <Box onPress={handleLogout}>
+            {/* <Box onPress={handleLogout}>
               <Icon size={42} iconName="logout--black" />
-            </Box>
+            </Box> */}
           </Row>
-
-          <MyText
-            color={COLOR_MEDIUM_EMPHASIS}
-            font={FONTS.lato.regular}
-            size={20}>
+          <MyText font={FONTS.lato.regular} size={20}>
             Como está se sentindo hoje?
           </MyText>
-          <Margin top={48} />
-          <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
-            <MyText
-              font={FONTS.poppins.bold}
-              color={COLOR_HIGH_EMPHASIS}
-              size={20}>
-              Notas de humor
-            </MyText>
-            <PlusButton />
-          </Row>
-          <MyText
-            font={FONTS.poppins.regular}
-            color={COLOR_MEDIUM_EMPHASIS}
-            size={12}>
-            Sua nota mais recente
-          </MyText>
-
-          {latestNote ? (
-            <LatestNote
-              handleOnPress={() => console.log('Nota recente!')}
-              latestNote={latestNote}
-            />
-          ) : null}
         </Padding>
-      </ScrollView>
+        <Margin top={12} />
+      </Box>
+      <Box
+        bgColor="#f5f5f5"
+        flex
+        style={{ position: 'relative', top: -15 }}
+        borderRadius={16}>
+        <ScrollView>
+          <Padding top={16} horizontal={16}>
+            <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
+              <MyText
+                font={FONTS.poppins.bold}
+                color={COLOR_HIGH_EMPHASIS}
+                size={20}>
+                Notas de humor
+              </MyText>
+              <PlusButton onPress={handleCreateNote} />
+            </Row>
+
+            {latestNote ? (
+              <>
+                <MyText
+                  font={FONTS.poppins.regular}
+                  color={COLOR_MEDIUM_EMPHASIS}
+                  size={12}>
+                  Sua nota mais recente
+                </MyText>
+                <LatestNote
+                  onPress={() => console.log('Nota recente!')}
+                  latestNote={latestNote}
+                />
+              </>
+            ) : (
+              <MyText
+                font={FONTS.poppins.regular}
+                color={COLOR_MEDIUM_EMPHASIS}
+                size={12}>
+                Você não tem nenhuma nota recente.
+              </MyText>
+            )}
+          </Padding>
+        </ScrollView>
+      </Box>
     </SafeArea>
   );
 };
@@ -112,13 +126,9 @@ const MOODS = {
   },
 };
 
-const LatestNote = ({ handleOnPress, latestNote }) => {
+const LatestNote = ({ onPress, latestNote }) => {
   return (
-    <Box
-      onPress={handleOnPress}
-      shadow
-      borderRadius={16}
-      bgColor={COLOR_GRAY_100}>
+    <Box onPress={onPress} borderRadius={16} bgColor={COLOR_WHITE}>
       <Padding all={12}>
         <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
           <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
@@ -141,12 +151,11 @@ const LatestNote = ({ handleOnPress, latestNote }) => {
   );
 };
 
-const PlusButton = ({ handleOnPress }) => {
+const PlusButton = ({ onPress }) => {
   return (
     <Box
-      shadow
-      onPress={handleOnPress}
-      bgColor={COLOR_GRAY_100}
+      onPress={onPress}
+      bgColor={COLOR_WHITE}
       height={42}
       width={42}
       borderRadius={8}
