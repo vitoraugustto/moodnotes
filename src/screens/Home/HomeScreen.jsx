@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../services/note';
 import { logoutUser } from '../../store/actions/user';
@@ -8,6 +9,7 @@ import { logoutUser } from '../../store/actions/user';
 import {
   Box,
   Icon,
+  Input,
   Margin,
   MyText,
   Padding,
@@ -26,22 +28,25 @@ import {
 const HomeScreen = () => {
   const { name } = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const [latestNote, setLatestNote] = useState(null);
 
-  // const handleLogout = () => {
-  //   dispatch(logoutUser());
-  // };
-
-  const handleCreateNote = () => {
-    console.log('Criar nota');
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
 
-  useEffect(() => {
+  const handleCreateNote = () => {
+    navigation.navigate('CreateNoteScreen');
+  };
+
+  const handleFetchNotes = () => {
     fetchNotes()
       .then(res => setLatestNote(res.data[res.data.length - 1]))
       .catch(err => console.log(err.response.data));
-  }, []);
+  };
+
+  useLayoutEffect(handleFetchNotes);
 
   return (
     <SafeArea bgColor="#f5f5f5">
@@ -52,9 +57,9 @@ const HomeScreen = () => {
               Olá, {name}!
             </MyText>
 
-            {/* <Box onPress={handleLogout}>
+            <Box onPress={handleLogout}>
               <Icon size={42} iconName="logout--black" />
-            </Box> */}
+            </Box>
           </Row>
           <MyText font={FONTS.lato.regular} size={20}>
             Como está se sentindo hoje?
@@ -107,7 +112,7 @@ const HomeScreen = () => {
   );
 };
 
-const MOODS = {
+export const MOODS = {
   sad: {
     text: 'Triste',
     emoji: 'sad-emoji',
@@ -117,7 +122,7 @@ const MOODS = {
     emoji: 'happy-emoji',
   },
   angry: {
-    text: 'Raiva',
+    text: 'Puto da vida',
     emoji: 'angry-emoji',
   },
   surprised: {

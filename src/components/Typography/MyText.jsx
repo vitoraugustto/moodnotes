@@ -7,6 +7,7 @@ const MyText = ({
   size = 16,
   spacing,
   lineHeight,
+  align,
   font = FONTS.lato.regular,
   children,
 }) => {
@@ -18,6 +19,7 @@ const MyText = ({
         fontSize: size,
         lineHeight: lineHeight,
         letterSpacing: spacing,
+        textAlign: align,
       }}>
       {children}
     </Text>

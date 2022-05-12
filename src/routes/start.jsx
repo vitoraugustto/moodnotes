@@ -2,9 +2,7 @@ import GettingStartedScreen from '../screens/GettingStarted/GettingStartedScreen
 import LoginScreen from '../screens/Login/LoginScreen';
 import RegisterScreen from '../screens/Register/RegisterScreen';
 
-const defaultOptions = {
-  headerShown: false,
-};
+import { defaultOptions } from '.';
 
 export const START_ROUTES = {
   GettingStartedScreen: {
