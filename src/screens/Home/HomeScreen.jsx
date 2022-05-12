@@ -33,6 +33,8 @@ const HomeScreen = () => {
     dispatch(logoutUser());
   };
 
+  console.log(useSelector(state => state));
+
   useEffect(() => {
     fetchNotes()
       .then(res => setLatestNote(res.data[res.data.length - 1]))

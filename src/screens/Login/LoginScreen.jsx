@@ -20,11 +20,13 @@ import { windowHeight } from '../../utils';
 import SeatedMan from '../../assets/images/seated-man.png';
 import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
-const LoginScreen = () => {
+const LoginScreen = ({ route }) => {
+  const { routeEmail, routePassword } = route.params || {};
+
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('aline@email.com');
-  const [password, setPassword] = useState('Re3we322s');
+  const [username, setUsername] = useState(routeEmail ? routeEmail : '');
+  const [password, setPassword] = useState(routePassword ? routePassword : '');
   const [loading, setLoading] = useState('');
 
   const handleOnPress = () => {
@@ -58,7 +60,7 @@ const LoginScreen = () => {
             size={16}>
             Que bom ter você por aqui. ;)
           </MyText>
-          <Margin top={24} />
+          <Margin top={8} />
           <Input
             placeholder="Digite seu usuário"
             value={username}

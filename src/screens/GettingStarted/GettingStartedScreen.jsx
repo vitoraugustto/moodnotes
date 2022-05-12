@@ -19,8 +19,12 @@ import SeatedMan from '../../assets/images/seated-man.png';
 const GettingStartedScreen = () => {
   const navigation = useNavigation();
 
-  const handleOnPress = () => {
+  const handleLogin = () => {
     navigation.navigate('LoginScreen');
+  };
+
+  const handleRegister = () => {
+    navigation.navigate('RegisterScreen');
   };
 
   return (
@@ -42,12 +46,12 @@ const GettingStartedScreen = () => {
             Para começar, entre ou realize seu cadastro. :)
           </MyText>
           <Margin top={24} />
-          <Button onPress={handleOnPress} text="Entrar" />
+          <Button onPress={handleLogin} text="Entrar" />
           <Margin top={12} />
           <Button
             clear
             borderColor={COLOR_BLUE_400}
-            onPress={handleOnPress}
+            onPress={handleRegister}
             text="Cadastrar"
           />
         </Padding>
