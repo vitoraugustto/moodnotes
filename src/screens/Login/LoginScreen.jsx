@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ScrollView, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 
-import { login } from '../../services/auth';
+import { login } from '../../services/user';
 import { setUser } from '../../store/actions/user';
 
 import {

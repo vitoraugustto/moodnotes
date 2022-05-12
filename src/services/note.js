@@ -1,27 +1,20 @@
-import { API_INSTANCE } from './axios';
-
-import store from '../store';
-
-const authToken = () => {
-  return { Authorization: `Bearer ${store.getState().user.token}` };
-};
+import { API_INSTANCE, authToken, GET, POST } from './axios';
 
 export const fetchNotes = () => {
   return API_INSTANCE({
-    method: 'GET',
+    method: GET,
     url: `/moods`,
     headers: authToken(),
   });
 };
 
-export const createNote = ({ mood, title, description }) => {
+export const createNote = ({ mood, description }) => {
   return API_INSTANCE({
-    method: 'POST',
+    method: POST,
     url: `/moods`,
     headers: authToken(),
     data: {
       mood: mood,
-      title: title,
       description: description,
     },
   });
