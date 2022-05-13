@@ -14,4 +14,10 @@ export const ICONS = {
   'angry-emoji': {
     icon: require('../../../assets/icons/angry-emoji.png'),
   },
+  'inlove-emoji': {
+    icon: require('../../../assets/icons/inlove-emoji.png'),
+  },
+  'indifferent-emoji': {
+    icon: require('../../../assets/icons/indifferent-emoji.png'),
+  },
 };

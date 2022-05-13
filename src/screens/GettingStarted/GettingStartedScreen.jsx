@@ -12,7 +12,12 @@ import {
 } from '../../components';
 
 import { windowHeight } from '../../utils';
-import { COLOR_BLUE_700, COLOR_BLUE_400, FONTS } from '../../themes/theme';
+import {
+  COLOR_BLUE_700,
+  COLOR_BLUE_400,
+  COLOR_WHITE,
+  FONTS,
+} from '../../themes/theme';
 
 import SeatedMan from '../../assets/images/seated-man.png';
 
@@ -28,7 +33,7 @@ const GettingStartedScreen = () => {
   };
 
   return (
-    <SafeArea>
+    <SafeArea bgColor={COLOR_WHITE}>
       <ScrollView>
         <Padding all={16}>
           <Image

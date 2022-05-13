@@ -1,15 +1,15 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../services/note';
 import { logoutUser } from '../../store/actions/user';
+import { MOODS } from '../../utils';
 
 import {
   Box,
   Icon,
-  Input,
   Margin,
   MyText,
   Padding,
@@ -26,7 +26,7 @@ import {
 } from '../../themes/theme';
 
 const HomeScreen = () => {
-  const { name } = useSelector(state => state.user);
+  const { user } = useSelector(state => state);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -36,8 +36,8 @@ const HomeScreen = () => {
     dispatch(logoutUser());
   };
 
-  const handleCreateNote = () => {
-    navigation.navigate('CreateNoteScreen');
+  const handleSelectMoodScreen = () => {
+    navigation.navigate('CreateNote__SelectMoodScreen');
   };
 
   const handleFetchNotes = () => {
@@ -49,21 +49,21 @@ const HomeScreen = () => {
   useLayoutEffect(handleFetchNotes);
 
   return (
-    <SafeArea bgColor="#f5f5f5">
+    <SafeArea>
       <Box bgColor={COLOR_BLUE_400}>
         <Padding all={16}>
           <Row vCenter style={{ justifyContent: 'space-between' }}>
             <MyText font={FONTS.poppins.bold} color={COLOR_WHITE} size={24}>
-              Olá, {name}!
+              Olá, {user.name}!
             </MyText>
 
             <Box onPress={handleLogout}>
               <Icon size={42} iconName="logout--black" />
             </Box>
           </Row>
-          <MyText font={FONTS.lato.regular} size={20}>
+          {/* <MyText font={FONTS.lato.regular} size={20}>
             Como está se sentindo hoje?
-          </MyText>
+          </MyText> */}
         </Padding>
         <Margin top={12} />
       </Box>
@@ -81,7 +81,7 @@ const HomeScreen = () => {
                 size={20}>
                 Notas de humor
               </MyText>
-              <PlusButton onPress={handleCreateNote} />
+              <PlusButton onPress={handleSelectMoodScreen} />
             </Row>
 
             {latestNote ? (
@@ -110,25 +110,6 @@ const HomeScreen = () => {
       </Box>
     </SafeArea>
   );
-};
-
-export const MOODS = {
-  sad: {
-    text: 'Triste',
-    emoji: 'sad-emoji',
-  },
-  happy: {
-    text: 'Feliz',
-    emoji: 'happy-emoji',
-  },
-  angry: {
-    text: 'Puto da vida',
-    emoji: 'angry-emoji',
-  },
-  surprised: {
-    text: 'Surpreso',
-    emoji: 'surprised-emoji',
-  },
 };
 
 const LatestNote = ({ onPress, latestNote }) => {

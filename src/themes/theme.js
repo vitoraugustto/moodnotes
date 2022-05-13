@@ -10,6 +10,8 @@ export const FONTS = {
   },
 };
 
+export const BACKGROUND_COLOR = '#f5f5f5';
+
 export const COLOR_HIGH_EMPHASIS = '#1f2636';
 export const COLOR_MEDIUM_EMPHASIS = '#747474';
 

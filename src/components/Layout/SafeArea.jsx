@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView, StatusBar } from 'react-native';
 
-import { COLOR_BLUE_400 } from '../../themes/theme';
+import { BACKGROUND_COLOR, COLOR_BLUE_400 } from '../../themes/theme';
 
 const SafeArea = ({
   barStyle = 'light',
   statusBarBgColor = COLOR_BLUE_400,
-  bgColor = 'white',
+  bgColor = BACKGROUND_COLOR,
   children,
 }) => {
   return (

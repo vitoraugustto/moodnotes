@@ -11,6 +11,7 @@ import {
 } from '../../themes/theme';
 
 const Button = ({
+  height,
   loading,
   text,
   borderRadius = 8,
@@ -39,6 +40,7 @@ const Button = ({
         borderRadius: borderRadius,
         borderWidth: borderColor ? 3 : 0,
         borderColor: borderColor,
+        height: height,
 
         transition: '0.5s',
         ...style,

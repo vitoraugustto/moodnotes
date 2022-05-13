@@ -54,22 +54,25 @@ const RegisterScreen = () => {
           </MyText>
           <Margin top={8} />
           <Input
+            outline
             value={name}
             onChangeText={setName}
-            placeholder="Digite seu nome"
+            placeholder="Digite seu nome..."
           />
           <Margin top={12} />
           <Input
+            outline
             value={email}
             onChangeText={setEmail}
-            placeholder="Digite seu email"
+            placeholder="Digite seu email..."
           />
           <Margin top={12} />
           <Input
+            outline
             value={password}
             onChangeText={setPassword}
             mask
-            placeholder="Digite sua senha"
+            placeholder="Digite sua senha..."
           />
           <Margin top={12} />
           <Button

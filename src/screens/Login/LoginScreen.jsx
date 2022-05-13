@@ -18,15 +18,19 @@ import {
 import { windowHeight } from '../../utils';
 
 import SeatedMan from '../../assets/images/seated-man.png';
-import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
+import { COLOR_BLUE_700, COLOR_WHITE, FONTS } from '../../themes/theme';
 
 const LoginScreen = ({ route }) => {
   const { routeEmail, routePassword } = route.params || {};
 
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState(routeEmail ? routeEmail : '');
-  const [password, setPassword] = useState(routePassword ? routePassword : '');
+  const [username, setUsername] = useState(
+    routeEmail ? routeEmail : 'testemarcus@gmail.com',
+  );
+  const [password, setPassword] = useState(
+    routePassword ? routePassword : '1234567',
+  );
   const [loading, setLoading] = useState('');
 
   const handleOnPress = () => {
@@ -36,14 +40,14 @@ const LoginScreen = ({ route }) => {
       .then(res => {
         dispatch(setUser(res.data, res.data.token));
       })
-      .catch(err => {
+      .catch(() => {
         Alert.alert(null, 'Usuário ou senha incorreta');
       })
       .finally(() => setLoading(false));
   };
 
   return (
-    <SafeArea>
+    <SafeArea bgColor={COLOR_WHITE}>
       <ScrollView keyboardShouldPersistTaps="handled">
         <Padding all={16}>
           <Image
@@ -62,12 +66,14 @@ const LoginScreen = ({ route }) => {
           </MyText>
           <Margin top={8} />
           <Input
+            outline
             placeholder="Digite seu usuário"
             value={username}
             onChangeText={setUsername}
           />
           <Margin top={12} />
           <Input
+            outline
             mask
             placeholder="Digite sua senha"
             value={password}

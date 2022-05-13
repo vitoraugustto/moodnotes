@@ -5,6 +5,7 @@ import { COLOR_BLUE_200, COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
 const Input = ({
   mask,
+  outline,
   bgColor = COLOR_BLUE_200,
   placeholder,
   placeholderColor = COLOR_BLUE_700,
@@ -31,8 +32,10 @@ const Input = ({
         color: color,
         paddingLeft: 16,
         paddingRight: 16,
-        backgroundColor: bgColor,
+        backgroundColor: outline ? 'transparent' : bgColor,
         borderRadius: borderRadius,
+        borderWidth: outline ? 3 : 0,
+        borderColor: outline ? COLOR_BLUE_200 : 'transparent',
         ...style,
       }}>
       {children}
