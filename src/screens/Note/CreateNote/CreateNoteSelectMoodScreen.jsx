@@ -24,29 +24,15 @@ const CreateNoteSelectMoodScreen = () => {
   const navigation = useNavigation();
 
   const [selectedMood, setSelectedMood] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const handleSelectMood = mood => {
     setSelectedMood(mood);
   };
 
   const handleDescribeScreen = () => {
-    navigation.navigate('CreateNote__DescribeScreen', { mood: selectedMood });
-  };
-
-  const handleCreateNote = () => {
-    if (loading) return;
-    setLoading(true);
-
-    createNote({ mood: selectedMood, description: `Eu estou ${selectedMood}` })
-      .then(() => navigation.navigate('HomeScreen'))
-      .catch(() =>
-        Alert.alert(
-          null,
-          'Erro ao criar nota. Por favor, tente novamente mais tarde.',
-        ),
-      )
-      .finally(() => setLoading(false));
+    navigation.navigate('CreateNote__DescribeScreen', {
+      selectedMood: selectedMood,
+    });
   };
 
   return (
@@ -81,7 +67,6 @@ const CreateNoteSelectMoodScreen = () => {
             style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}
             height={56}
             borderRadius={0}
-            loading={loading}
             onPress={handleDescribeScreen}
             text="Continuar"
           />
