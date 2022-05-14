@@ -20,4 +20,28 @@ export const ICONS = {
   'indifferent-emoji': {
     icon: require('../../../assets/icons/indifferent-emoji.png'),
   },
+  apple: {
+    icon: require('../../../assets/icons/apple.png'),
+  },
+  carrot: {
+    icon: require('../../../assets/icons/carrot.png'),
+  },
+  chicken: {
+    icon: require('../../../assets/icons/chicken.png'),
+  },
+  chocolate: {
+    icon: require('../../../assets/icons/chocolate.png'),
+  },
+  'french-fries': {
+    icon: require('../../../assets/icons/french-fries.png'),
+  },
+  juice: {
+    icon: require('../../../assets/icons/juice.png'),
+  },
+  pizza: {
+    icon: require('../../../assets/icons/pizza.png'),
+  },
+  rice: {
+    icon: require('../../../assets/icons/rice.png'),
+  },
 };

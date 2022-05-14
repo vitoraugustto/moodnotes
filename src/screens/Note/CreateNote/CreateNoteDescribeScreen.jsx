@@ -26,7 +26,7 @@ import {
 } from '../../../themes/theme';
 
 const CreateNoteDescribeScreen = ({ route }) => {
-  const { selectedMood } = route.params || {};
+  const { selectedMood, selectedFoods } = route.params || {};
   const navigation = useNavigation();
 
   const [description, setDescription] = useState('');
@@ -38,16 +38,15 @@ const CreateNoteDescribeScreen = ({ route }) => {
 
     createNote({
       mood: selectedMood,
+      food: String(selectedFoods),
       description: description
         ? description
         : `Hoje eu me senti ${MOODS[selectedMood].text.toLowerCase()}.`,
     })
-      .then(res => {
-        console.log(res.data);
+      .then(() => {
         navigation.navigate('HomeScreen');
       })
-      .catch(err => {
-        console.log(err.response.data);
+      .catch(() => {
         Alert.alert(
           null,
           'Erro ao criar nota. Por favor, tente novamente mais tarde.',

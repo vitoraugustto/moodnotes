@@ -8,13 +8,14 @@ export const fetchNotes = () => {
   });
 };
 
-export const createNote = ({ mood, description }) => {
+export const createNote = ({ mood, food, description }) => {
   return API_INSTANCE({
     method: POST,
     url: `/moods`,
     headers: authToken(),
     data: {
       mood: mood,
+      food: food,
       description: description,
     },
   });

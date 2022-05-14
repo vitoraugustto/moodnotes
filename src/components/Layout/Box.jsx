@@ -26,7 +26,7 @@ const Box = ({
         backgroundColor: bgColor,
         borderRadius: borderRadius,
         borderColor: borderColor,
-        borderWidth: borderColor ? 1 : undefined,
+        borderWidth: borderColor ? 3 : undefined,
         alignItems: hCenter ? 'center' : undefined,
         justifyContent: vCenter ? 'center' : undefined,
         height: height,

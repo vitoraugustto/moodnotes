@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 import { createUser } from '../../services/user';
 
@@ -35,7 +36,12 @@ const RegisterScreen = () => {
     setLoading(true);
     createUser({ name: name, email: email, password: password })
       .then(redirectToLogin)
-      .catch(err => console.log(err.response.data))
+      .catch(err =>
+        Alert.alert(
+          null,
+          'Erro ao realizar cadastro. Por favor, tente novamente mais tarde.',
+        ),
+      )
       .finally(() => setLoading(false));
   };
 

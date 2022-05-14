@@ -33,3 +33,38 @@ export const MOODS = {
     emoji: 'inlove-emoji',
   },
 };
+
+export const FOODS = {
+  fruit: {
+    text: 'Frutas',
+    icon: 'apple',
+  },
+  legume: {
+    text: 'Legumes',
+    icon: 'carrot',
+  },
+  chicken: {
+    text: 'Carnes',
+    icon: 'chicken',
+  },
+  candy: {
+    text: 'Doces',
+    icon: 'chocolate',
+  },
+  fastFood: {
+    text: 'Fast-food',
+    icon: 'french-fries',
+  },
+  liquid: {
+    text: 'Líquidos',
+    icon: 'juice',
+  },
+  pasta: {
+    text: 'Massas',
+    icon: 'pizza',
+  },
+  homemade: {
+    text: 'Comida caseira',
+    icon: 'rice',
+  },
+};

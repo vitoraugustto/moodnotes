@@ -11,7 +11,7 @@ export const login = ({ user, password }) => {
   });
 };
 
-export const createUser = ({ name, email, password, age = 0 }) => {
+export const createUser = ({ name, email, password }) => {
   return API_INSTANCE({
     method: POST,
     url: `/users`,
@@ -19,7 +19,7 @@ export const createUser = ({ name, email, password, age = 0 }) => {
       name: name,
       email: email,
       password: password,
-      age: age,
+      birthday: '1999-11-01',
     },
   });
 };

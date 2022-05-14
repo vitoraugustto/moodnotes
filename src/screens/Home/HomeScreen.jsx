@@ -1,11 +1,11 @@
-import React, { useLayoutEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { ScrollView, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../services/note';
 import { logoutUser } from '../../store/actions/user';
-import { MOODS } from '../../utils';
+import { FOODS, MOODS } from '../../utils';
 
 import {
   Box,
@@ -23,6 +23,8 @@ import {
   COLOR_WHITE,
   COLOR_MEDIUM_EMPHASIS,
   FONTS,
+  COLOR_VIOLET_300,
+  COLOR_VIOLET_700,
 } from '../../themes/theme';
 
 const HomeScreen = () => {
@@ -43,10 +45,19 @@ const HomeScreen = () => {
   const handleFetchNotes = () => {
     fetchNotes()
       .then(res => setLatestNote(res.data[res.data.length - 1]))
-      .catch(err => console.log(err.response.data));
+      .catch(() =>
+        Alert.alert(
+          null,
+          'Erro ao carregar nota recente. Por favor, tente novamente mais tarde.',
+        ),
+      );
   };
 
-  useLayoutEffect(handleFetchNotes);
+  useFocusEffect(
+    useCallback(() => {
+      handleFetchNotes();
+    }, []),
+  );
 
   return (
     <SafeArea>
@@ -93,7 +104,7 @@ const HomeScreen = () => {
                   Sua nota mais recente
                 </MyText>
                 <LatestNote
-                  onPress={() => console.log('Nota recente!')}
+                  onPress={() => console.log(latestNote)}
                   latestNote={latestNote}
                 />
               </>
@@ -113,6 +124,8 @@ const HomeScreen = () => {
 };
 
 const LatestNote = ({ onPress, latestNote }) => {
+  const foods = latestNote.food.split(',');
+
   return (
     <Box onPress={onPress} borderRadius={16} bgColor={COLOR_WHITE}>
       <Padding all={12}>
@@ -130,7 +143,20 @@ const LatestNote = ({ onPress, latestNote }) => {
             <Icon size={32} iconName={MOODS[latestNote.mood].emoji} />
           </Box>
         </Row>
-        <Margin top={8} />
+        <Margin top={4} />
+        <Row style={{ flexWrap: 'wrap' }}>
+          {foods.map((food, index) => (
+            <Margin key={index} bottom={8} right={8}>
+              <Box borderRadius={16} bgColor={COLOR_VIOLET_300}>
+                <Padding horizontal={8}>
+                  <MyText size={14} color={COLOR_VIOLET_700}>
+                    {FOODS[food].text}
+                  </MyText>
+                </Padding>
+              </Box>
+            </Margin>
+          ))}
+        </Row>
         <MyText color={COLOR_MEDIUM_EMPHASIS}>{latestNote.description}</MyText>
       </Padding>
     </Box>

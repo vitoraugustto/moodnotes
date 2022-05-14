@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { Alert } from 'react-native';
 
-import { createNote } from '../../../services/note';
 import { MOODS } from '../../../utils';
 
 import {
@@ -17,7 +15,7 @@ import {
   SafeArea,
 } from '../../../components';
 
-import { COLOR_WHITE, FONTS } from '../../../themes/theme';
+import { COLOR_BLUE_400, FONTS } from '../../../themes/theme';
 
 const CreateNoteSelectMoodScreen = () => {
   const { user } = useSelector(state => state);
@@ -30,7 +28,7 @@ const CreateNoteSelectMoodScreen = () => {
   };
 
   const handleDescribeScreen = () => {
-    navigation.navigate('CreateNote__DescribeScreen', {
+    navigation.navigate('CreateNote__SelectFoodScreen', {
       selectedMood: selectedMood,
     });
   };
@@ -80,7 +78,7 @@ const EmojiButton = ({ highlight, iconName, text, onPress }) => {
   return (
     <Box
       width="50%"
-      bgColor={highlight ? COLOR_WHITE : 'transparent'}
+      bgColor={highlight ? COLOR_BLUE_400 : 'transparent'}
       borderRadius={16}
       hCenter
       onPress={onPress}>
