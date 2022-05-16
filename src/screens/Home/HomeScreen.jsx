@@ -72,9 +72,6 @@ const HomeScreen = () => {
               <Icon size={42} iconName="logout--black" />
             </Box>
           </Row>
-          {/* <MyText font={FONTS.lato.regular} size={20}>
-            Como está se sentindo hoje?
-          </MyText> */}
         </Padding>
         <Margin top={12} />
       </Box>
@@ -124,8 +121,6 @@ const HomeScreen = () => {
 };
 
 const LatestNote = ({ onPress, latestNote }) => {
-  const foods = latestNote.food.split(',');
-
   return (
     <Box onPress={onPress} borderRadius={16} bgColor={COLOR_WHITE}>
       <Padding all={12}>
@@ -145,7 +140,7 @@ const LatestNote = ({ onPress, latestNote }) => {
         </Row>
         <Margin top={4} />
         <Row style={{ flexWrap: 'wrap' }}>
-          {foods.map((food, index) => (
+          {latestNote.food.map((food, index) => (
             <Margin key={index} bottom={8} right={8}>
               <Box borderRadius={16} bgColor={COLOR_VIOLET_300}>
                 <Padding horizontal={8}>

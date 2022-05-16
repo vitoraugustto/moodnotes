@@ -38,7 +38,7 @@ const CreateNoteDescribeScreen = ({ route }) => {
 
     createNote({
       mood: selectedMood,
-      food: String(selectedFoods),
+      food: selectedFoods,
       description: description
         ? description
         : `Hoje eu me senti ${MOODS[selectedMood].text.toLowerCase()}.`,
