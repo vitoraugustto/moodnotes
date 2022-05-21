@@ -95,7 +95,9 @@ const HomeScreen = () => {
           </Row>
 
           {loading ? (
-            <ActivityIndicator size="large" color={COLOR_BLUE_400} />
+            <Margin top={22}>
+              <ActivityIndicator size="large" color={COLOR_BLUE_400} />
+            </Margin>
           ) : latestNote ? (
             <>
               <MyText
@@ -107,12 +109,14 @@ const HomeScreen = () => {
               <Note note={latestNote} />
             </>
           ) : (
-            <MyText
-              font={FONTS.poppins.regular}
-              color={COLOR_MEDIUM_EMPHASIS}
-              size={12}>
-              Você não tem nenhuma nota recente.
-            </MyText>
+            <Margin top={22}>
+              <MyText
+                font={FONTS.poppins.regular}
+                color={COLOR_MEDIUM_EMPHASIS}
+                size={22}>
+                Você não tem nenhuma nota recente.
+              </MyText>
+            </Margin>
           )}
         </Padding>
       </Box>

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
@@ -57,13 +57,24 @@ const ListNotesScreen = () => {
           </Row>
 
           {loading ? (
-            <ActivityIndicator size="large" color={COLOR_WHITE} />
-          ) : (
+            <Margin top={32}>
+              <ActivityIndicator size="large" color={COLOR_WHITE} />
+            </Margin>
+          ) : notes.length > 0 ? (
             notes.map((note, index) => (
               <Margin top={12} key={index}>
                 <Note note={note} />
               </Margin>
             ))
+          ) : (
+            <Margin top={32}>
+              <MyText
+                font={FONTS.poppins.regular}
+                color={COLOR_WHITE}
+                size={22}>
+                Você não tem nenhuma nota criada.
+              </MyText>
+            </Margin>
           )}
         </Padding>
       </ScrollView>

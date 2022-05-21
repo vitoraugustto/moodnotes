@@ -10,6 +10,8 @@ import { NOTE_ROUTES } from './note';
 import ListNotesScreen from '../screens/Note/ListNote/ListNotesScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 
+import ProfileScreen from '../screens/Profile/ProfileScreen';
+
 import { Icon, Margin, MyText, Row } from '../components';
 
 import {
@@ -42,6 +44,11 @@ const TABS = [
     component: ListNotesScreen,
     icon: 'note--',
   },
+  {
+    name: 'Perfil',
+    component: ProfileScreen,
+    icon: 'user--',
+  },
 ];
 
 const TabIcon = ({ tab, focused }) => {
@@ -53,7 +60,7 @@ const TabIcon = ({ tab, focused }) => {
       />
       <Margin right={8} />
       <MyText
-        font={FONTS.lato.bold}
+        font={focused ? FONTS.lato.bold : FONTS.lato.regular}
         color={focused ? COLOR_BLUE_400 : COLOR_BLACK}>
         {tab.name}
       </MyText>
