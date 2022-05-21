@@ -25,7 +25,7 @@ const ListNotesScreen = () => {
   const handleFetchNotes = () => {
     setLoading(true);
     fetchNotes()
-      .then(res => setNotes(res.data))
+      .then(res => setNotes(res.data.reverse()))
       .catch(() =>
         Alert.alert(
           null,

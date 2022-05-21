@@ -89,7 +89,7 @@ const Routes = () => {
   const isAuthenticated = token;
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ animation: 'none' }}>
       {Object.entries(
         isAuthenticated
           ? { ...TAB_ROUTE, ...NOTE_ROUTES }

@@ -134,11 +134,9 @@ const PlusButton = ({ onPress }) => {
       width={42}
       borderRadius={8}
       hCenter
+      shadow
       vCenter>
-      <MyText
-        size={28}
-        color={COLOR_HIGH_EMPHASIS}
-        font={FONTS.poppins.regular}>
+      <MyText size={28} color={COLOR_HIGH_EMPHASIS} font={FONTS.lato.bold}>
         +
       </MyText>
     </Box>
