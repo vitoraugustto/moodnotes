@@ -1,35 +1,34 @@
 import React, { useCallback, useState } from 'react';
-import { ScrollView, Alert, ActivityIndicator } from 'react-native';
+import { Alert, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../services/note';
 import { logoutUser } from '../../store/actions/user';
-import { FOODS, MOODS } from '../../utils';
 
 import {
+  Row,
   Box,
   Icon,
   Margin,
   MyText,
   Padding,
-  Row,
   SafeArea,
+  PlusButton,
+  Note,
 } from '../../components';
 
 import {
   COLOR_HIGH_EMPHASIS,
+  COLOR_MEDIUM_EMPHASIS,
   COLOR_BLUE_400,
   COLOR_WHITE,
-  COLOR_MEDIUM_EMPHASIS,
   FONTS,
-  COLOR_VIOLET_300,
-  COLOR_VIOLET_700,
 } from '../../themes/theme';
-import Note from '../../components/Note/Note';
 
 const HomeScreen = () => {
   const { user } = useSelector(state => state);
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -75,10 +74,6 @@ const HomeScreen = () => {
               size={24}>
               Olá, {user.name}!
             </MyText>
-
-            <Box onPress={handleLogout}>
-              <Icon size={42} iconName="logout--black" />
-            </Box>
           </Row>
         </Padding>
         <Margin top={12} />
@@ -109,7 +104,7 @@ const HomeScreen = () => {
                 size={12}>
                 Sua nota mais recente
               </MyText>
-              <Note onPress={() => console.log(latestNote)} note={latestNote} />
+              <Note note={latestNote} />
             </>
           ) : (
             <MyText
@@ -122,24 +117,6 @@ const HomeScreen = () => {
         </Padding>
       </Box>
     </SafeArea>
-  );
-};
-
-const PlusButton = ({ onPress }) => {
-  return (
-    <Box
-      onPress={onPress}
-      bgColor={COLOR_WHITE}
-      height={42}
-      width={42}
-      borderRadius={8}
-      hCenter
-      shadow
-      vCenter>
-      <MyText size={28} color={COLOR_HIGH_EMPHASIS} font={FONTS.lato.bold}>
-        +
-      </MyText>
-    </Box>
   );
 };
 

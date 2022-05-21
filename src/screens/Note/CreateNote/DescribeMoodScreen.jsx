@@ -44,7 +44,10 @@ const DescribeMoodScreen = ({ route }) => {
         : `Hoje eu me senti ${MOODS[selectedMood].text.toLowerCase()}.`,
     })
       .then(() => {
-        navigation.navigate('TabScreens', { param: 'Notas' });
+        navigation.navigate('TabScreens', {
+          screen: 'Notas',
+          params: { refresh: true },
+        });
       })
       .catch(() => {
         Alert.alert(

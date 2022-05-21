@@ -1,20 +1,20 @@
-import React, { useCallback, useState } from 'react';
-import { ScrollView, Alert } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../../services/note';
 
 import {
-  Box,
-  Icon,
   Margin,
   MyText,
+  Note,
   Padding,
+  PlusButton,
+  Row,
   SafeArea,
 } from '../../../components';
 
 import { COLOR_BLUE_400, FONTS, COLOR_WHITE } from '../../../themes/theme';
-import Note from '../../../components/Note/Note';
 
 const ListNotesScreen = () => {
   const navigation = useNavigation();
@@ -35,27 +35,36 @@ const ListNotesScreen = () => {
       .finally(() => setLoading(false));
   };
 
+  const handleSelectMoodScreen = () => {
+    navigation.navigate('SelectMoodScreen');
+  };
+
   useFocusEffect(
     useCallback(() => {
       handleFetchNotes();
     }, []),
   );
 
-  console.log(notes);
-
   return (
     <SafeArea bgColor={COLOR_BLUE_400}>
       <ScrollView>
         <Padding all={16}>
-          <MyText font={FONTS.poppins.bold} color={COLOR_WHITE} size={24}>
-            Suas notas
-          </MyText>
+          <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
+            <MyText font={FONTS.poppins.bold} color={COLOR_WHITE} size={24}>
+              Suas notas
+            </MyText>
+            <PlusButton onPress={handleSelectMoodScreen} />
+          </Row>
 
-          {notes.map((note, index) => (
-            <Margin top={12} key={index}>
-              <Note note={note} onPress={() => console.log(note)} />
-            </Margin>
-          ))}
+          {loading ? (
+            <ActivityIndicator size="large" color={COLOR_WHITE} />
+          ) : (
+            notes.map((note, index) => (
+              <Margin top={12} key={index}>
+                <Note note={note} />
+              </Margin>
+            ))
+          )}
         </Padding>
       </ScrollView>
     </SafeArea>

@@ -8,6 +8,8 @@ import Button from './UI/Button';
 import Image from './UI/Image';
 import Icon from './UI//Icon/Icon';
 import MyText from './Typography/MyText';
+import PlusButton from './PlusButton/PlusButton';
+import Note from './Note/Note';
 
 export {
   SafeArea,
@@ -20,4 +22,6 @@ export {
   MyText,
   Image,
   Icon,
+  PlusButton,
+  Note,
 };
