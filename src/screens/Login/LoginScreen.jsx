@@ -25,8 +25,12 @@ const LoginScreen = ({ route }) => {
 
   const dispatch = useDispatch();
 
-  const [username, setUsername] = useState(routeEmail ? routeEmail : '');
-  const [password, setPassword] = useState(routePassword ? routePassword : '');
+  const [username, setUsername] = useState(
+    routeEmail ? routeEmail : '123@gmail.com',
+  );
+  const [password, setPassword] = useState(
+    routePassword ? routePassword : '1234567',
+  );
   const [loading, setLoading] = useState('');
 
   const handleOnPress = () => {

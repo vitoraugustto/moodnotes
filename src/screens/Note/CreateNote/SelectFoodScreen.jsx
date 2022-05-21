@@ -17,14 +17,14 @@ import {
 
 import { COLOR_BLUE_400, FONTS } from '../../../themes/theme';
 
-const CreateNoteSelectFoodScreen = ({ route }) => {
+const SelectFoodScreen = ({ route }) => {
   const { selectedMood } = route.params || {};
   const navigation = useNavigation();
 
   const [selectedFoods, setSelectedFoods] = useState([]);
 
   const handleDescribeScreen = () => {
-    navigation.navigate('CreateNote__DescribeScreen', {
+    navigation.navigate('DescribeMoodScreen', {
       selectedMood: selectedMood,
       selectedFoods: selectedFoods,
     });
@@ -104,4 +104,4 @@ const FoodButton = ({ highlight, iconName, text, onPress }) => {
   );
 };
 
-export default CreateNoteSelectFoodScreen;
+export default SelectFoodScreen;

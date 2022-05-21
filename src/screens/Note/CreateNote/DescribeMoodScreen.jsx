@@ -25,7 +25,7 @@ import {
   BACKGROUND_COLOR,
 } from '../../../themes/theme';
 
-const CreateNoteDescribeScreen = ({ route }) => {
+const DescribeMoodScreen = ({ route }) => {
   const { selectedMood, selectedFoods } = route.params || {};
   const navigation = useNavigation();
 
@@ -44,7 +44,7 @@ const CreateNoteDescribeScreen = ({ route }) => {
         : `Hoje eu me senti ${MOODS[selectedMood].text.toLowerCase()}.`,
     })
       .then(() => {
-        navigation.navigate('HomeScreen');
+        navigation.navigate('TabScreens', { param: 'Notas' });
       })
       .catch(() => {
         Alert.alert(
@@ -116,4 +116,4 @@ const CreateNoteDescribeScreen = ({ route }) => {
   );
 };
 
-export default CreateNoteDescribeScreen;
+export default DescribeMoodScreen;

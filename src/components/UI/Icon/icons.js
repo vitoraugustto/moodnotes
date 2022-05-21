@@ -44,4 +44,22 @@ export const ICONS = {
   rice: {
     icon: require('../../../assets/icons/rice.png'),
   },
+  'home--black': {
+    icon: require('../../../assets/icons/home--black.png'),
+  },
+  'home--blue': {
+    icon: require('../../../assets/icons/home--blue.png'),
+  },
+  'note--black': {
+    icon: require('../../../assets/icons/note--black.png'),
+  },
+  'note--blue': {
+    icon: require('../../../assets/icons/note--blue.png'),
+  },
+  'user--black': {
+    icon: require('../../../assets/icons/user--black.png'),
+  },
+  'user--blue': {
+    icon: require('../../../assets/icons/user--blue.png'),
+  },
 };

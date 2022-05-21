@@ -20,6 +20,7 @@ export const createUser = ({ name, email, password }) => {
       email: email,
       password: password,
       birthday: '1999-11-01',
+      biological_sex: 'male',
     },
   });
 };

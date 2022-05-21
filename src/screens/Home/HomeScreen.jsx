@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ScrollView, Alert } from 'react-native';
+import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
@@ -26,6 +26,7 @@ import {
   COLOR_VIOLET_300,
   COLOR_VIOLET_700,
 } from '../../themes/theme';
+import Note from '../../components/Note/Note';
 
 const HomeScreen = () => {
   const { user } = useSelector(state => state);
@@ -33,16 +34,18 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const [latestNote, setLatestNote] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = () => {
     dispatch(logoutUser());
   };
 
   const handleSelectMoodScreen = () => {
-    navigation.navigate('CreateNote__SelectMoodScreen');
+    navigation.navigate('SelectMoodScreen');
   };
 
   const handleFetchNotes = () => {
+    setLoading(true);
     fetchNotes()
       .then(res => setLatestNote(res.data[res.data.length - 1]))
       .catch(() =>
@@ -50,7 +53,8 @@ const HomeScreen = () => {
           null,
           'Erro ao carregar nota recente. Por favor, tente novamente mais tarde.',
         ),
-      );
+      )
+      .finally(() => setLoading(false));
   };
 
   useFocusEffect(
@@ -64,7 +68,11 @@ const HomeScreen = () => {
       <Box bgColor={COLOR_BLUE_400}>
         <Padding all={16}>
           <Row vCenter style={{ justifyContent: 'space-between' }}>
-            <MyText font={FONTS.poppins.bold} color={COLOR_WHITE} size={24}>
+            <MyText
+              flex
+              font={FONTS.poppins.bold}
+              color={COLOR_WHITE}
+              size={24}>
               Olá, {user.name}!
             </MyText>
 
@@ -80,81 +88,40 @@ const HomeScreen = () => {
         flex
         style={{ position: 'relative', top: -15 }}
         borderRadius={16}>
-        <ScrollView>
-          <Padding top={16} horizontal={16}>
-            <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
-              <MyText
-                font={FONTS.poppins.bold}
-                color={COLOR_HIGH_EMPHASIS}
-                size={20}>
-                Notas de humor
-              </MyText>
-              <PlusButton onPress={handleSelectMoodScreen} />
-            </Row>
+        <Padding top={16} horizontal={16}>
+          <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
+            <MyText
+              font={FONTS.poppins.bold}
+              color={COLOR_HIGH_EMPHASIS}
+              size={20}>
+              Notas de humor
+            </MyText>
+            <PlusButton onPress={handleSelectMoodScreen} />
+          </Row>
 
-            {latestNote ? (
-              <>
-                <MyText
-                  font={FONTS.poppins.regular}
-                  color={COLOR_MEDIUM_EMPHASIS}
-                  size={12}>
-                  Sua nota mais recente
-                </MyText>
-                <LatestNote
-                  onPress={() => console.log(latestNote)}
-                  latestNote={latestNote}
-                />
-              </>
-            ) : (
+          {loading ? (
+            <ActivityIndicator size="large" color={COLOR_BLUE_400} />
+          ) : latestNote ? (
+            <>
               <MyText
                 font={FONTS.poppins.regular}
                 color={COLOR_MEDIUM_EMPHASIS}
                 size={12}>
-                Você não tem nenhuma nota recente.
+                Sua nota mais recente
               </MyText>
-            )}
-          </Padding>
-        </ScrollView>
+              <Note onPress={() => console.log(latestNote)} note={latestNote} />
+            </>
+          ) : (
+            <MyText
+              font={FONTS.poppins.regular}
+              color={COLOR_MEDIUM_EMPHASIS}
+              size={12}>
+              Você não tem nenhuma nota recente.
+            </MyText>
+          )}
+        </Padding>
       </Box>
     </SafeArea>
-  );
-};
-
-const LatestNote = ({ onPress, latestNote }) => {
-  return (
-    <Box onPress={onPress} borderRadius={16} bgColor={COLOR_WHITE}>
-      <Padding all={12}>
-        <Row style={{ justifyContent: 'space-between' }} vCenter hCenter>
-          <MyText font={FONTS.poppins.bold} color={COLOR_HIGH_EMPHASIS}>
-            {MOODS[latestNote.mood].text}
-          </MyText>
-          <Box
-            hCenter
-            vCenter
-            bgColor={COLOR_WHITE}
-            borderRadius={10}
-            width={30}
-            height={30}>
-            <Icon size={32} iconName={MOODS[latestNote.mood].emoji} />
-          </Box>
-        </Row>
-        <Margin top={4} />
-        <Row style={{ flexWrap: 'wrap' }}>
-          {latestNote.food.map((food, index) => (
-            <Margin key={index} bottom={8} right={8}>
-              <Box borderRadius={16} bgColor={COLOR_VIOLET_300}>
-                <Padding horizontal={8}>
-                  <MyText size={14} color={COLOR_VIOLET_700}>
-                    {FOODS[food].text}
-                  </MyText>
-                </Padding>
-              </Box>
-            </Margin>
-          ))}
-        </Row>
-        <MyText color={COLOR_MEDIUM_EMPHASIS}>{latestNote.description}</MyText>
-      </Padding>
-    </Box>
   );
 };
 

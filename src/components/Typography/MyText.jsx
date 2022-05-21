@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { COLOR_BLACK, FONTS } from '../../themes/theme';
 
 const MyText = ({
+  flex,
   color = COLOR_BLACK,
   size = 16,
   spacing,
@@ -14,6 +15,7 @@ const MyText = ({
   return (
     <Text
       style={{
+        flex: flex ? 1 : undefined,
         color: color,
         fontFamily: font,
         fontSize: size,

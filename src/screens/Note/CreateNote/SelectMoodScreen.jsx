@@ -17,7 +17,7 @@ import {
 
 import { COLOR_BLUE_400, FONTS } from '../../../themes/theme';
 
-const CreateNoteSelectMoodScreen = () => {
+const SelectMoodScreen = () => {
   const { user } = useSelector(state => state);
   const navigation = useNavigation();
 
@@ -28,7 +28,7 @@ const CreateNoteSelectMoodScreen = () => {
   };
 
   const handleDescribeScreen = () => {
-    navigation.navigate('CreateNote__SelectFoodScreen', {
+    navigation.navigate('SelectFoodScreen', {
       selectedMood: selectedMood,
     });
   };
@@ -93,4 +93,4 @@ const EmojiButton = ({ highlight, iconName, text, onPress }) => {
   );
 };
 
-export default CreateNoteSelectMoodScreen;
+export default SelectMoodScreen;
