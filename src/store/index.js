@@ -1,24 +1,20 @@
+import { combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import {
-  combineReducers,
-  legacy_createStore as createStore,
-  applyMiddleware,
-} from 'redux';
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 
-import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
-import thunk from 'redux-thunk';
-
 import { userReducer } from './reducers/user';
-
-// change later to new syntax:
-//
-// export const store = configureStore({
-//   reducer: {
-//     user: userReducer,
-//   },
-// });
 
 const persistConfig = {
   key: 'root',
@@ -32,5 +28,14 @@ const rootReducers = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 
-export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
 export const persistor = persistStore(store);
