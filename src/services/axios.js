@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BACKEND_BASE_URL } from '../config/api';
-import store from '../store';
+import { store } from '../store';
 
 export const authToken = () => {
   return { Authorization: `Bearer ${store.getState().user.token}` };

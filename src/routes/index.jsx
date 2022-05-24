@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { START_ROUTES } from './start';
 import { TAB_ROUTE } from './tab';
@@ -96,20 +97,22 @@ const Routes = () => {
   const isAuthenticated = token;
 
   return (
-    <Stack.Navigator screenOptions={{ animation: 'none' }}>
-      {Object.entries(
-        isAuthenticated
-          ? { ...TAB_ROUTE, ...NOTE_ROUTES }
-          : { ...START_ROUTES },
-      ).map(([routeName, route]) => (
-        <Stack.Screen
-          key={routeName}
-          name={routeName}
-          component={route.component}
-          options={route.options}
-        />
-      ))}
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{ animation: 'none' }}>
+        {Object.entries(
+          isAuthenticated
+            ? { ...TAB_ROUTE, ...NOTE_ROUTES }
+            : { ...START_ROUTES },
+        ).map(([routeName, route]) => (
+          <Stack.Screen
+            key={routeName}
+            name={routeName}
+            component={route.component}
+            options={route.options}
+          />
+        ))}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
