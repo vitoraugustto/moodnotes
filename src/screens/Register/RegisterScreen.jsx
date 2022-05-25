@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
+
+import moment from 'moment';
 
 import { createUser } from '../../services/user';
 
@@ -14,12 +16,14 @@ import {
   Box,
 } from '../../components';
 
+import { maskDate } from '../../utils';
 import { COLOR_BLUE_700, FONTS } from '../../themes/theme';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
   const [name, setName] = useState('');
+  const [birthdate, setBirthdate] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,16 +38,31 @@ const RegisterScreen = () => {
   const handleRegister = () => {
     if (loading) return;
     setLoading(true);
-    createUser({ name: name, email: email, password: password })
+    createUser({
+      name: name,
+      email: email,
+      password: password,
+      birthdate: moment(birthdate, 'DD/MM/YYYY').format('YYYY-MM-DD'),
+    })
       .then(redirectToLogin)
       .catch(err =>
         Alert.alert(
-          null,
-          'Erro ao realizar cadastro. Por favor, tente novamente mais tarde.',
+          'Erro ao realizar cadastro',
+          'Por favor, verifique suas informações ou tente novamente mais tarde.',
         ),
       )
       .finally(() => setLoading(false));
   };
+
+  const handleSetBirthDate = text => {
+    if (birthdate.length > 10) return;
+
+    setBirthdate(text);
+  };
+
+  useEffect(() => {
+    setBirthdate(maskDate(birthdate));
+  }, [birthdate]);
 
   return (
     <SafeArea>
@@ -63,14 +82,21 @@ const RegisterScreen = () => {
             outline
             value={name}
             onChangeText={setName}
-            placeholder="Digite seu nome..."
+            placeholder="Nome"
+          />
+          <Margin top={12} />
+          <Input
+            outline
+            value={birthdate}
+            onChangeText={handleSetBirthDate}
+            placeholder="Data de nascimento"
           />
           <Margin top={12} />
           <Input
             outline
             value={email}
             onChangeText={setEmail}
-            placeholder="Digite seu email..."
+            placeholder="Email"
           />
           <Margin top={12} />
           <Input
@@ -78,11 +104,16 @@ const RegisterScreen = () => {
             value={password}
             onChangeText={setPassword}
             mask
-            placeholder="Digite sua senha..."
+            placeholder="Senha"
           />
           <Margin top={12} />
           <Button
-            disabled={!name || !email || password.length < 7}
+            disabled={
+              name.length < 3 ||
+              birthdate.length < 10 ||
+              !email ||
+              password.length < 7
+            }
             onPress={handleRegister}
             loading={loading}
             text="Cadastrar"

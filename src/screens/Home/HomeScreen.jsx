@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { Alert, ActivityIndicator } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { fetchNotes } from '../../services/note';
-import { logoutUser } from '../../store/actions/user';
 
 import {
   Row,
   Box,
-  Icon,
   Margin,
   MyText,
   Padding,
@@ -29,15 +27,10 @@ import {
 const HomeScreen = () => {
   const { user } = useSelector(state => state);
 
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const [latestNote, setLatestNote] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
-  };
 
   const handleSelectMoodScreen = () => {
     navigation.navigate('SelectMoodScreen');
@@ -61,6 +54,8 @@ const HomeScreen = () => {
       handleFetchNotes();
     }, []),
   );
+
+  console.log(user);
 
   return (
     <SafeArea>

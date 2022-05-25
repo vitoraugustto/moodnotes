@@ -4,6 +4,18 @@ export const capitalizeFirstLetter = string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+export const onlyNumbers = value => {
+  return value.replace(/[^0-9]/g, '');
+};
+
+export const maskDate = value => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d)/, '$1/$2')
+    .replace(/(\d{2})(\d)/, '$1/$2')
+    .replace(/(\d{4})(\d)/, '$1');
+};
+
 export const windowHeight = Dimensions.get('window').height;
 export const windowWidth = Dimensions.get('window').width;
 

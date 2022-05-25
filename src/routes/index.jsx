@@ -79,13 +79,14 @@ export const TabScreens = () => {
       }}>
       {TABS.map(tab => (
         <Tab.Screen
+          key={tab.name}
+          name={tab.name}
+          component={tab.component}
           options={{
             tabBarIcon: ({ focused }) => (
               <TabIcon tab={tab} focused={focused} />
             ),
           }}
-          name={tab.name}
-          component={tab.component}
         />
       ))}
     </Tab.Navigator>
