@@ -55,8 +55,6 @@ const HomeScreen = () => {
     }, []),
   );
 
-  console.log(user);
-
   return (
     <SafeArea>
       <Box bgColor={COLOR_BLUE_400}>
