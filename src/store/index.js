@@ -1,15 +1,6 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist';
+import { persistStore, persistReducer, REGISTER } from 'redux-persist';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
@@ -33,7 +24,7 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoreActions: [REGISTER],
       },
     }),
 });
