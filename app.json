@@ -1,4 +1,7 @@
 {
   "name": "moodnotes",
-  "displayName": "Mood Notes"
+  "displayName": "Mood Notes",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-2882287196167600~8978904767"
+  }
 }
