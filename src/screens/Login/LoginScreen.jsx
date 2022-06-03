@@ -48,7 +48,7 @@ const LoginScreen = ({ route }) => {
         <Padding all={16}>
           <Image
             resizeMode="contain"
-            height={windowHeight * 0.6}
+            height={windowHeight * 0.45}
             src={SeatedMan}
           />
           <MyText font={FONTS.poppins.bold} size={22}>
