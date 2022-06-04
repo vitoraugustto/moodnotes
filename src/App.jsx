@@ -18,6 +18,10 @@ const App = () => {
           sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
         />
         <Routes />
+        <GAMBannerAd
+          unitId={AD_UNIT_ID}
+          sizes={[BannerAdSize.ANCHORED_ADAPTIVE_BANNER]}
+        />
       </PersistGate>
     </Provider>
   );

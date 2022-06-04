@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native';
+import { TestIds } from 'react-native-google-mobile-ads';
 
 export const capitalizeFirstLetter = string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -19,7 +20,9 @@ export const maskDate = value => {
 export const windowHeight = Dimensions.get('window').height;
 export const windowWidth = Dimensions.get('window').width;
 
-export const AD_UNIT_ID = 'ca-app-pub-2882287196167600/7666393913';
+export const AD_UNIT_ID = __DEV__
+  ? TestIds.GAM_BANNER
+  : 'ca-app-pub-2882287196167600/7666393913';
 
 export const MOODS = {
   sad: {
