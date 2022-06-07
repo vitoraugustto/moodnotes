@@ -1,4 +1,4 @@
-import { API_INSTANCE, POST } from './axios';
+import { API_INSTANCE, POST, authToken, GET } from './axios';
 
 export const login = ({ user, password }) => {
   return API_INSTANCE({
@@ -22,5 +22,24 @@ export const createUser = ({ name, email, password, birthdate }) => {
       birthday: birthdate,
       biological_sex: 'male',
     },
+  });
+};
+
+export const uploadImage = ({ uri }) => {
+  const formData = new FormData();
+  formData.append('avatar', uri);
+
+  return API_INSTANCE({
+    method: POST,
+    url: `/users/me/avatar`,
+    headers: { ...authToken(), 'Content-Type': 'multipart/form-data' },
+    data: formData,
+  });
+};
+
+export const fetchAvatar = ({ id }) => {
+  return API_INSTANCE({
+    method: GET,
+    url: `/users/${id}/avatar`,
   });
 };

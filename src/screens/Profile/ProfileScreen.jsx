@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { launchImageLibrary } from 'react-native-image-picker';
 import moment from 'moment';
 import 'moment/locale/pt-br';
 
@@ -24,6 +25,7 @@ import {
   FONTS,
 } from '../../themes/theme';
 import UserImage from '../../assets/images/user--white.png';
+import { fetchAvatar, uploadImage } from '../../services/user';
 
 const ProfileScreen = () => {
   const { user } = useSelector(state => state);
@@ -33,11 +35,25 @@ const ProfileScreen = () => {
     dispatch(logoutUser());
   };
 
+  const handleImagePicker = async () => {
+    const data = await launchImageLibrary({
+      mediaType: 'photo',
+      maxWidth: 1280,
+      maxHeight: 720,
+    });
+
+    uploadImage({ uri: data.assets[0] })
+      .then(res => console.log(res.data))
+      .catch(err => console.log('ERROR: ', err.response));
+  };
+
   return (
     <SafeArea bgColor={COLOR_BLUE_200}>
       <Box bgColor={COLOR_BLUE_400} hCenter>
         <Margin top={68} />
-        <Image src={UserImage} height={200} width={200} />
+        <Box onPress={handleImagePicker}>
+          <Image src={UserImage} height={200} width={200} />
+        </Box>
         <Margin top={12} />
         <MyText
           size={24}
