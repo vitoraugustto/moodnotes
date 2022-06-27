@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { launchImageLibrary } from 'react-native-image-picker';
 import moment from 'moment';
 import 'moment/locale/pt-br';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import { logoutUser } from '../../store/actions/user';
+import { fetchAvatar, uploadAvatar } from '../../services/user';
 
 import {
   Box,
@@ -17,6 +18,8 @@ import {
   SafeArea,
 } from '../../components';
 
+import UserImage from '../../assets/images/user--white.png';
+
 import {
   COLOR_BLUE_200,
   COLOR_BLUE_400,
@@ -24,12 +27,12 @@ import {
   COLOR_WHITE,
   FONTS,
 } from '../../themes/theme';
-import UserImage from '../../assets/images/user--white.png';
-import { fetchAvatar, uploadAvatar } from '../../services/user';
 
 const ProfileScreen = () => {
   const { user } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const [avatar, setAvatar] = useState();
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -47,12 +50,31 @@ const ProfileScreen = () => {
       .catch(err => console.log('ERROR: ', err.response));
   };
 
+  const handleFetchAvatar = () => {
+    fetchAvatar({ id: user._id }).then(res => {
+      const fileReaderInstance = new FileReader();
+      fileReaderInstance.readAsDataURL(res.data);
+      fileReaderInstance.onload = () => {
+        setAvatar(fileReaderInstance.result);
+      };
+    });
+  };
+
+  useEffect(() => {
+    handleFetchAvatar();
+  });
+
   return (
     <SafeArea bgColor={COLOR_BLUE_200}>
       <Box bgColor={COLOR_BLUE_400} hCenter>
         <Margin top={68} />
-        <Box onPress={handleImagePicker}>
-          <Image src={UserImage} height={200} width={200} />
+        <Box onPress={!avatar ? handleImagePicker : null}>
+          <Image
+            style={{ borderRadius: 100 }}
+            src={avatar ? { uri: avatar } : UserImage}
+            height={200}
+            width={200}
+          />
         </Box>
         <Margin top={12} />
         <MyText

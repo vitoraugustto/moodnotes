@@ -41,5 +41,6 @@ export const fetchAvatar = ({ id }) => {
   return API_INSTANCE({
     method: GET,
     url: `/users/${id}/avatar`,
+    responseType: 'blob',
   });
 };
