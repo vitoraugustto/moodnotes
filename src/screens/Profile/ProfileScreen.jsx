@@ -25,7 +25,7 @@ import {
   FONTS,
 } from '../../themes/theme';
 import UserImage from '../../assets/images/user--white.png';
-import { fetchAvatar, uploadImage } from '../../services/user';
+import { fetchAvatar, uploadAvatar } from '../../services/user';
 
 const ProfileScreen = () => {
   const { user } = useSelector(state => state);
@@ -42,7 +42,7 @@ const ProfileScreen = () => {
       maxHeight: 720,
     });
 
-    uploadImage({ uri: data.assets[0] })
+    uploadAvatar({ uri: data.assets[0] })
       .then(res => console.log(res.data))
       .catch(err => console.log('ERROR: ', err.response));
   };

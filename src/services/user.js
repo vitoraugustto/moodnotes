@@ -25,7 +25,7 @@ export const createUser = ({ name, email, password, birthdate }) => {
   });
 };
 
-export const uploadImage = ({ uri }) => {
+export const uploadAvatar = ({ uri }) => {
   const formData = new FormData();
   formData.append('avatar', uri);
 
